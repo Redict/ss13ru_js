@@ -1,7 +1,8 @@
 import './data.js';
 
 import z from "./lib/zombular.js";
-import './lib/parallax.js';
+import './lib/pixilax.js';
+//import Parallax from './lib/parallax.js'; // "FUCK GO BACK" compatibility!
 
 import './lib/marked.min.js';
 
@@ -187,5 +188,6 @@ const Main = z.overlay(
 );
 
 const Body = z('', Styles, Main);
+//const body = z.('', Styles, Parallax, Main) // "FUCK GO BACK" compatibility!
 
 z.setBody(Body);
