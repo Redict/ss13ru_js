@@ -12,16 +12,14 @@ window.data = {
 Дизайн финальным не является и будет дорабатываться дальше. В частности, наверху вы можете видеть банеры из рандомных картинок из станции, которые мы будем наполнять чем-то более оригинальным и внятным. Это так же касается других деталей, которые мы будем трогать напильником.`,
     }],
     servers: [{
-        name: 'Chaotic Onyx',
-        icon: 'https://ss13.ru/img/Server_5.svg',
+        name: 'The Neekothing',
+        icon: 'https://ss13.ru/img/neekothing.png',
         online: true,
-        players: 19,
-        description: 'Переосмысление Черного сервера, Chaotic Onyx - это место, где объединяются настоящий отыгрыш персонажей и интересные чрезвычайные ситуации, происходящие с персоналом на Космической Станции 13.',
-        address: 'byond://ss13.ru:2507',
+        players: 1337,
+        description: 'Психоделическая тоталитарная утопия. В силу интернациональности, общение ведётся на смеси из ломанного английского и русского мата.',
+        address: 'byond://50.35.188.8:50455',
         links: [
-            {what: 'discord', text: "Discord", href: 'https://discordapp.com/invite/K57CEvZ'},
-            {what: 'github', text: "Github", href: 'https://github.com/Rampoch/Chaotic-Onyx'},
-            {what: 'wikipedia-w', text: "Wiki", href: 'https://wiki.ss13.ru/index.php?title=Chaotic_Onyx'},
+            {what: 'discord', text: "Discord", href: 'https://discord.gg/8CD8gVf'}
         ],
     },{
         name: 'Yellow Circus',

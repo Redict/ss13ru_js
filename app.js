@@ -67,20 +67,25 @@ body { margin: 0; overflow: hidden; font-family: Comfortaa, cursive; font-size: 
 .bg3 { background-color: #db2828; }
 
 .bg4 { background-color: #e8e8e8; }
+.bg5 { background-color: #b7b7b7; }
 
-.bg0.h, .bg4.h { transition: background-color .3s; }
+.bg0.h, .bg4 > .h { transition: background-color .25s; }
 
 .bg0.h:hover { background-color: rgba(24, 48, 64, 0.95); }
-.bg4.h:hover { background-color: #676767; }
+.bg4:hover > .h { background-color: #b7b7b7; }
 
 .p0 { padding: 15px; }
 .p1 { padding: .5833em .833em; }
+.p2 { padding: .833em 1.0827em; }
 
 .c0 { color: #fff; }
 .c1 { color: rgba(0, 0, 0, .6); }
 
 .shd2 { 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12) }
+
 .rnd { border-radius: 2px; }
+.rndr { border-top-right-radius: 2px; border-bottom-right-radius: 2px; }
+.rndl { border-top-left-radius: 2px; border-bottom-left-radius: 2px; }
 
 .di { display: inline-block; }
 .tc { text-align: center; }
@@ -154,20 +159,20 @@ const Articles = data.news.map(Article);
 
 const Servers = data.servers.map(
     ({name, icon, online, players, description, address, links}) => z.di.bg1.p0.shd2.rnd.sp1(
-        z.flex.nowrap.centered(
-            z._img({src: icon}), z.spl05.wb(name),
-            z.s1.flex.reverse(z.p1.di.bg4.c1.rnd(
-                online ? [z.circle.di.bg2(), ' online'] : [z.circle.di.bg3(), ' offline'],
-                ' ', Icon('users'), ' ', players
-            ))
-        ),
+        z.flex.nowrap.centered(z._img({src: icon}), z.spl05.wb(name)),
         z.sp1.f1(z('<', marked(description))),
         z.flex.wrap(z.each(links,
             ({what, text, href}) => z._a.p1.di.bg0.c0.rnd.fs0.h.tdn.sp05({href},
                 Icon(what, 'fab fs2'), ' ', text), z.spl05()
         )),
-        z.flex.reverse.sp2(
-            z._a.p1.wf.tc.bg4.h.c1.rnd.tdn({href: address}, Icon('play'), ' Join')
+        z.sp2(
+            z._a.wf.bg4.c1.rnd.tdn.flex.nowrap({href: address},
+                z.p2.di.h.c1.s1.tc.rndl(Icon('play'), ' Join'),
+                z.p2.di.bg5.c1.rndr(
+                    online ? [z.circle.di.bg2(), ' online'] : [z.circle.di.bg3(), ' offline'],
+                    ' ', Icon('users'), ' ', players
+                )
+            ),
         )
     )
 );
