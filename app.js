@@ -135,7 +135,7 @@ const Menu = z.menu({class: () => ({opened})},
 z.s2.flex.bg1.nowrap.reverse.scrollinks(Links.map(i=>z.sp1(i))),
 z.flex.nowrap.bg1.p0.shd2.rnd(
     z.s1.flex.centered(z._a({href: '#'},
-        z._img({src: 'assets/main-logo.png', height: '60px'}),
+        z._img({src: 'assets/main-logo.svg', height: '60px'}),
         z._img({src: 'assets/SS13.RU.svg', style: 'margin-left: 10px; margin-bottom: 15px;'})
     )),
     z.s2.flex.nowrap.reverse.links(Links.slice(0, 11)),
