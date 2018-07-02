@@ -133,7 +133,7 @@ const Links = z.each([
 let opened;
 const Menu = z.menu({class: () => ({opened})},
 z.s2.flex.bg1.nowrap.reverse.scrollinks(Links.map(i=>z.sp1(i))),
-z.flex.nowrap.bg1.p0.shd2.rnd(
+z.flex.nowrap.bg1.p0.shd2.rnd.wf(
     z.s1.flex.centered(z._a({href: '#'},
         z._img({src: 'assets/main-logo.png', height: '60px'}),
         z._img({src: 'assets/SS13.RU.svg', style: 'margin-left: 10px; margin-bottom: 15px;'})
@@ -193,6 +193,6 @@ const Main = z.overlay(
 );
 
 //const Body = z('', Styles, Main);// "FUCK GO BACK" compatibility!
-const body = z('', Styles, Parallax, Main); // "FUCK GO BACK" compatibility!
+const Body = z('', Styles, Parallax, Main); // "FUCK GO BACK" compatibility!
 
 z.setBody(Body);
