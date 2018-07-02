@@ -1,0 +1,36 @@
+{
+  "name": "ss13ru_js",
+  "version": "1.0.0",
+  "description": "Feel free to contribute!",
+  "main": "app.js",
+  "scripts": {
+    "build": "node ./node_modules/webpack-cli/bin/cli.js",
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Redict/ss13ru_js.git"
+  },
+  "author": "canvas123",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Redict/ss13ru_js/issues"
+  },
+  "homepage": "https://github.com/Redict/ss13ru_js#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "copy-webpack-plugin": "^4.5.2",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.14.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
+}
