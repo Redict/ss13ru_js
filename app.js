@@ -1,12 +1,10 @@
-import './data.js';
-
 import z from "./lib/zombular.js";
 //import './lib/pixilax.js'; // "FUCK GO BACK" compatibility!
 import Parallax from './lib/parallax.js'; // "FUCK GO BACK" compatibility!
 
-import './lib/marked.min.js';
+import marked from './lib/marked.min.js';
 
-import './lib/moment.min.js';
+import moment from './lib/moment.min.js';
 moment.locale('ru');
 
 const Styles = z._style(`
@@ -193,6 +191,6 @@ const Main = z.overlay(
 );
 
 //const Body = z('', Styles, Main);// "FUCK GO BACK" compatibility!
-const body = z('', Styles, Parallax, Main); // "FUCK GO BACK" compatibility!
+const Body = z('', Styles, Parallax, Main); // "FUCK GO BACK" compatibility!
 
 z.setBody(Body);
