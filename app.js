@@ -158,7 +158,7 @@ const Article = ({name, content, date}) => z.bg0.p0.shd2.rnd.sp1(
 const Articles = data.news.map(Article);
 
 const Servers = data.servers.map(
-    ({name, icon, online, players, description, address, links}) => z.di.bg1.p0.shd2.rnd.sp1(
+    ({name, icon, online, players, description, address, links}) => z.di.bg1.p0.shd2.rnd.sp1.wf(
         z.flex.nowrap.centered(z._img({src: icon}), z.spl05.wb(name)),
         z.sp1.f1(z('<', marked(description))),
         z.flex.wrap(z.each(links,
