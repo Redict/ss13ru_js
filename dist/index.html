@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+        const supportsES6 = function() {
+          try {
+            new Function("(a = 0) => a");
+            return true;
+          }
+          catch (err) {
+            return false;
+          }
+        }();
+
+        addEventListener("load", function () {
+            if (supportsES6 !== true) {
+                document.body.innerHTML = '<h1> Your browser not support ES6, download <a href="https://www.google.com/chrome/">Chrome</a></h1>';
+            }
+        });
+    </script>
+</head>
+<body>
+    <script src="data.js"></script>
+<script type="text/javascript" src="/bundle.js"></script></body>
+</html>
