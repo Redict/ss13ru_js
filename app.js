@@ -105,7 +105,9 @@ body { margin: 0; overflow: hidden; font-family: Comfortaa, cursive; font-size: 
 
 .lh0 { line-height: 1.5em; }
 
-.wf { width: 100%; }
+
+.s2 > .flex > .wf { width: auto; } 
+
 .sz0 { width: 300px; }
 
 .cp { cursor: pointer; }
@@ -131,7 +133,7 @@ const Links = z.each([
 let opened;
 const Menu = z.menu({class: () => ({opened})},
 z.s2.flex.bg1.nowrap.reverse.scrollinks(Links.map(i=>z.sp1(i))),
-z.flex.nowrap.bg1.p0.shd2.rnd.wf(
+z.flex.nowrap.bg1.p0.shd2.rnd(
     z.s1.flex.centered(z._a({href: '#'},
         z._img({src: 'assets/main-logo.png', height: '60px'}),
         z._img({src: 'assets/SS13.RU.svg', style: 'margin-left: 10px; margin-bottom: 15px;'})
