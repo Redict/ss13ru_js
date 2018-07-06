@@ -105,6 +105,8 @@ body { margin: 0; overflow: hidden; font-family: Comfortaa, cursive; font-size: 
 
 .lh0 { line-height: 1.5em; }
 
+.wf { width: 100%; }
+.servers > .wf { width: auto; }
 
 .s2 > .flex > .wf { width: auto; } 
 
