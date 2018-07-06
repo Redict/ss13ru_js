@@ -100,13 +100,21 @@ body { margin: 0; overflow: hidden; font-family: Comfortaa, cursive; font-size: 
 .fs0 { font-size: .85714286rem; line-height: .85714286rem; }
 .fs1 { font-size: 32px; line-height: 32px; }
 .fs2 { font-size: 17px; line-height: 17px; }
+.fs3 { font-size: 25px; line-height: 25px; }
 
 .circle { border-radius: 50%; padding: .3em; width: 0; }
 
 .lh0 { line-height: 1.5em; }
 
 .wf { width: 100%; }
-.servers > .wf { width: auto; }
+.servers > .wf { width: auto; display: flex; flex-direction: column; }
+
+.serversPage > .wf > .df {max-height: unset !important;}
+.servers > .wf > .df { overflow: hidden; transition: max-height .3s; }
+
+
+.ic { display: none; transition: transform .3s}
+.servers > .wf > .centered > .reverse > .ic { display: flex; }
 
 .s2 > .flex > .wf { width: auto; } 
 
@@ -116,7 +124,7 @@ body { margin: 0; overflow: hidden; font-family: Comfortaa, cursive; font-size: 
 
 `);
 
-const Icon = (name, cls='fa') => z._i['fa-'+name]({class: cls});
+const Icon = (name, cls = 'fa', onclick) => z._i['fa-' + name]({class: cls, onclick: onclick});
 
 const MenuLink = (text, icon, href) => z._a.di.tc.c0.wb.tdn.mlh({href},
     z._img({src: `assets/icons/sidebar-${icon}.png`, height: '48px'}),
@@ -130,26 +138,26 @@ const Links = z.each([
     MenuLink('Сервера', 'servers', '#servers'),
     MenuLink('Форум', 'forum', 'https://forum.ss13.ru/'),
     MenuLink('Главная', 'news', '#'),
-], i=>i, z.spl2())
+], i => i, z.spl2())
 
 let opened;
 const Menu = z.menu({class: () => ({opened})},
-z.s2.flex.bg1.nowrap.reverse.scrollinks(Links.map(i=>z.sp1(i))),
-z.flex.nowrap.bg1.p0.shd2.rnd(
-    z.s1.flex.centered(z._a({href: '#'},
-        z._img({src: 'assets/main-logo.png', height: '60px'}),
-        z._img({src: 'assets/SS13.RU.svg', style: 'margin-left: 10px; margin-bottom: 15px;'})
-    )),
-    z.s2.flex.nowrap.reverse.links(Links.slice(0, 11)),
-    z.flex.hamburger.centered(
-        z.fs1.di.spr1.cp({
-            onclick() {
-                opened = !opened;
-                z.update();
-            }
-        }, Icon('bars'))
-    )
-));
+    z.s2.flex.bg1.nowrap.reverse.scrollinks(Links.map(i => z.sp1(i))),
+    z.flex.nowrap.bg1.p0.shd2.rnd(
+        z.s1.flex.centered(z._a({href: '#'},
+            z._img({src: 'assets/main-logo.png', height: '60px'}),
+            z._img({src: 'assets/SS13.RU.svg', style: 'margin-left: 10px; margin-bottom: 15px;'})
+        )),
+        z.s2.flex.nowrap.reverse.links(Links.slice(0, 11)),
+        z.flex.hamburger.centered(
+            z.fs1.di.spr1.cp({
+                onclick() {
+                    opened = !opened;
+                    z.update();
+                }
+            }, Icon('bars'))
+        )
+    ));
 
 const Article = ({name, content, date}) => z.bg0.p0.shd2.rnd.sp1(
     z._h2.flex.centered.lh0.spb0(z('<', name)),
@@ -158,26 +166,38 @@ const Article = ({name, content, date}) => z.bg0.p0.shd2.rnd.sp1(
 );
 
 const Articles = data.news.map(Article);
-
 const Servers = data.servers.map(
-    ({name, icon, online, players, description, address, links}) => z.di.bg1.p0.shd2.rnd.sp1.wf(
-        z.flex.nowrap.centered(z._img({src: icon}), z.spl05.wb(name)),
-        z.sp1.f1(z('<', marked(description))),
-        z.flex.wrap(z.each(links,
-            ({what, text, href}) => z._a.p1.di.bg0.c0.rnd.fs0.h.tdn.sp05({href},
-                Icon(what, 'fab fs2'), ' ', text), z.spl05()
-        )),
-        z.sp2(
-            z._a.wf.bg4.c1.rnd.tdn.flex.nowrap({href: address},
-                z.p2.di.h.c1.s1.tc.rndl(Icon('play'), ' Join'),
-                z.p2.di.bg5.c1.rndr(
-                    online ? [z.circle.di.bg2(), ' online'] : [z.circle.di.bg3(), ' offline'],
-                    ' ', Icon('users'), ' ', players
+    ({name, icon, online, players, description, address, links}) => {
+        let opened = false;
+        let contentTarget = undefined;
+        return z.di.bg1.p0.shd2.rnd.sp1.wf(
+            z.flex.nowrap.centered(
+                z._img({src: icon}),
+                z.spl05.wb(name),
+                z.flex.s1.reverse( z._i['fa-angle-down']({class: 'fa fs3 spr ic', onclick: () => (opened = !opened, z.update()), style : () => opened ? "transform: rotateX(180deg)" : ""}))),
+            z.df({style: () => `max-height:${opened ? contentTarget.offsetHeight + 15: 0}px`,},
+                z._div({on$created: (e) => (contentTarget = e.target)}, // Короче ногой к уху
+                    z.sp1.f1(z('<', marked(description))),
+                    z.flex.wrap(z.each(links,
+                        ({what, text, href}) => z._a.p1.di.bg0.c0.rnd.fs0.h.tdn.sp05({href},
+                            Icon(what, 'fab fs2'), ' ', text), z.spl05(),
+                    )),
+                    z.sp1()
                 )
             ),
+            z.sp1(
+                z._a.wf.bg4.c1.rnd.tdn.flex.nowrap({href: address},
+                    z.p2.di.h.c1.s1.tc.rndl(Icon('play'), ' Join'),
+                    z.p2.di.bg5.c1.rndr(
+                        online ? [z.circle.di.bg2(), ' online'] : [z.circle.di.bg3(), ' offline'],
+                        ' ', Icon('users'), ' ', players
+                    )
+                ),
+            )
         )
-    )
+    }
 );
+
 
 const Main = z.overlay(
     z.main(Menu,
@@ -188,9 +208,8 @@ const Main = z.overlay(
             else if (route === 'help')
                 return z.flex.nowrap(z.s2(Article(data.help)), z.s1.spl1.servers(Servers))
             else if (route === 'servers')
-                return z.flex.wrap(Servers)
+                return z.flex.wrap.serversPage(Servers)
         },
-
     )
 );
 
